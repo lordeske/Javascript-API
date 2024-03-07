@@ -6,6 +6,17 @@ const avatarUrl = "https://sea1.discourse-cdn.com/freecodecamp";
 
 const postsContainer = document.getElementById("posts-container");
 
+
+const allCategories = {
+
+    299 : {
+        category : "Career Advice",
+        className : "career",
+    }
+}
+
+
+
 const timeAgo = (time) => {
 
     const currentTime = new Date(); // current time
@@ -32,6 +43,23 @@ const timeAgo = (time) => {
 
 
 }
+
+
+const  viewCount = (views) => {  // adding K if views is more than 1000
+
+    const thousands  = Math.floor(views / 1000);
+
+
+    if(views >= 1000)
+    {
+        return `${thousands}k`;
+    }
+
+    return views;
+
+
+}
+
 
 const fetchData = async () => {
 
@@ -77,7 +105,7 @@ const showLatestPosts = (data) => {
         <td><p class="post-title">${title}</p></td>   
         <td></td>   
         <td>${posts_count - 1}</td>   
-        <td>${views}</td>   
+        <td>${viewCount(views)}</td>   
         <td>${timeAgo(bumped_at)} </td>   
        </tr>`
 
