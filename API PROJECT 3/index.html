@@ -5,107 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon Search API</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+
 </head>
 <body>
 
     <h1>Pokemon Search</h1>
 
-
-    <div> 
-        <label for="search-input"></label>Search for Pokémon Name or ID: 
-        <input type="text" id="search-input" required> </input>
+    <div class="search-container"> 
+        <label for="search-input">Search for Pokémon Name or ID: </label>
+        <input type="text" id="search-input" required>
         <button type="button" id="search-button">Search</button>
     </div>
-    <div>
-       
-        <br> <br>
-        <div id="spirite-container">
-
-        </div>
-
-
-        <br><br>
-
-        <div>
-            <label for="pokemon-name" >POKEMON NAME: </label>
-            <div id="pokemon-name"></div>
-        </div>
-
-        <div>
-            <label for="pokemon-id">POKEOM ID: </label>
+    
+    <div class="info">
+        <div id="pokemon-info">
             <div id="pokemon-id"></div>
+            <div id="pokemon-name"></div>
+            <div id="types" class="type"></div>
         </div>
-
-        <div>
-            <label for="weight">WEIGTH: </label>
-            <div id="weight"></div>
-        </div>
-
-        <div>
-            <label for="height">HEIGHT: </label>
-            <div id="height"></div>
-        </div>
-
-        <div>
-            <label for="types">TYPE: </label>
-            <div id="types"></div>
-        </div>
-
-        <div>
-            <label for="hp">HP: </label>
-            <div id="hp"></div>
-        </div>
-
-        <div>
-            <label for="attack">ATTACK: </label>
-            <div id="attack"></div>
-        </div>
-
-        <div>
-            <label for="defense">DEF: </label>
-            <div id="defense"></div>
-        </div>
-
-        <div>
-            <label for="special-attack">SPECIAL ATT: </label>
-            <div id="special-attack"></div>
-        </div>
-
-        <div>
-            <label for="special-defense">SPECIAL DEF: </label>
-            <div id="special-defense"></div>
-        </div>
-
-        <div>
-            <label for="speed">SPEED: </label>
-            <div id="speed"></div>
-        </div>
-
-
-
     </div>
 
+    <div class="pokemon-details-container">
+    
+
+        <div id="spirite-container"></div>
+
+        
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <table class="details-table">
+          
+            <tr>
+                <td><label for="weight">WEIGHT:</label></td>
+                <td id="weight"></td>
+            </tr>
+            <tr>
+                <td><label for="height">HEIGHT:</label></td>
+                <td id="height"></td>
+            </tr>
+            <tr>
+                <td><label for="hp">HP:</label></td>
+                <td id="hp"></td>
+            </tr>
+            <tr>
+                <td><label for="attack">ATTACK:</label></td>
+                <td id="attack"></td>
+            </tr>
+            <tr>
+                <td><label for="defense">DEF:</label></td>
+                <td id="defense"></td>
+            </tr>
+            <tr>
+                <td><label for="special-attack">SPECIAL ATT:</label></td>
+                <td id="special-attack"></td>
+            </tr>
+            <tr>
+                <td><label for="special-defense">SPECIAL DEF:</label></td>
+                <td id="special-defense"></td>
+            </tr>
+            <tr>
+                <td><label for="speed">SPEED:</label></td>
+                <td id="speed"></td>
+            </tr>
+        </table>
+    </div>
 
     <script src="script.js"></script>
 </body>

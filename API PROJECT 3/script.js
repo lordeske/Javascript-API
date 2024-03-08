@@ -45,7 +45,7 @@ const retriveData = async () =>
         console.log(data);
 
         /// setting pokemon text
-        pokemonID.textContent = `${data.id}`;
+        pokemonID.textContent = `#${data.id}`;
         pokemonName.textContent = `${data.name.toUpperCase()}`;
         weight.textContent = `${data.weight}`;
         height.textContent = `${data.height}`;
