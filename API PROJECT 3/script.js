@@ -11,7 +11,8 @@ const specialDefense = document.getElementById('special-defense');
 const speed = document.getElementById('speed');
 const pokemonID = document.getElementById('pokemon-id');
 const pokemonName = document.getElementById('pokemon-name');
-const slika = document.getElementById("spirite-container");
+const img = document.getElementById("spirite-container");
+
 
 
 
@@ -31,22 +32,43 @@ const retriveData = async () =>
 
         const inputValue = searchInput.value.toLowerCase();
 
+        if(inputValue === "")
+        {
+            alert("Please enter Pokémon Name or ID");
+            return;
+        }
+
 
         const realUrl = `${basicUrl}/${inputValue}`;
         const info = await fetch(realUrl);
         const data = await info.json();
         console.log(data);
 
-        /// setting pokemon status 
+        /// setting pokemon text
         pokemonID.textContent = `${data.id}`;
         pokemonName.textContent = `${data.name.toUpperCase()}`;
         weight.textContent = `${data.weight}`;
         height.textContent = `${data.height}`;
 
-        slika.innerHTML = `<img id="sprite" src="${data.sprites.front_default}" 
+        img.innerHTML = `<img id="sprite" src="${data.sprites.front_default}" 
         alt="${data.name}"> `;
 
 
+
+        //setting stats
+        hp.textContent = data.stats[0].base_stat;
+        attack.textContent = data.stats[1].base_stat;
+        defense.textContent = data.stats[2].base_stat;
+        specialAttack.textContent = data.stats[3].base_stat;
+        specialDefense.textContent = data.stats[4].base_stat;
+        speed.textContent = data.stats[5].base_stat;
+
+
+
+        types.innerHTML = data.types.map(element=> `<span class="type ${element.type.name}">${element.type.name.toUpperCase()}</span>`).join("");
+
+      
+      
        
         
 
@@ -54,9 +76,10 @@ const retriveData = async () =>
     catch (err)
     {
 
+        clearUI();
         console.log(err);
         alert("Pokémon not found");
-        
+
 
     }
 
@@ -68,6 +91,32 @@ const retriveData = async () =>
 
 
 
+const clearUI = ()=>{
+
+    const sprite = document.getElementById("sprite");
+    if(sprite)
+    {
+        sprite.remove();
+
+    }
+
+
+    // reset stats
+    pokemonName.textContent = '';
+    pokemonID.textContent = '';
+    types.innerHTML = '';
+    height.textContent = '';
+    weight.textContent = '';
+    hp.textContent = '';
+    attack.textContent = '';
+    defense.textContent = '';
+    specialAttack.textContent = '';
+    specialDefense.textContent = '';
+    speed.textContent = '';
+
+    console.log("eske");
+
+}
 
 
 
@@ -75,8 +124,11 @@ const retriveData = async () =>
 
 
 
-seatchBtn.addEventListener("click", ()=>
+
+seatchBtn.addEventListener("click", (e)=>
 {
+    e.preventDefault();
+    clearUI();
     retriveData();
     
 })
