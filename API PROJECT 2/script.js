@@ -62,6 +62,33 @@ const forumCategory = (id) =>{
 }
 
 
+const avatars = (posters , users) =>{
+
+    return posters.map((poster)=> {
+
+        const user = users.find((user) => 
+        user.id === poster.user_id);
+
+        if (user)
+        {
+
+            const avatar = user.avatar_template.replace(/${size}/ ,30)
+        
+            const userAvatarUrl = avatar.startsWith("/user_avatar/")
+            ? avatarUrl.concat(avatar)
+            : avatar;
+
+            return `<img  src="${userAvatarUrl}" alt="${user.name}"  >`
+
+
+        }
+
+    }).join("");
+
+
+
+}
+
 
 const timeAgo = (time) => {
 
@@ -149,9 +176,9 @@ const showLatestPosts = (data) => {
         } = item;
 
         return `<tr>
-        <td><p class="post-title">${title}</p>
+        <td><a href="${forumTopicUrl}${slug}/${id}" target="_blank" class="post-title">${title}</a>
             ${forumCategory(category_id)}</td>   
-        <td></td>   
+        <td><div class="avatar-container">${avatars(posters, users)}</div></td>   
         <td>${posts_count - 1}</td>   
         <td>${viewCount(views)}</td>   
         <td>${timeAgo(bumped_at)} </td>   
