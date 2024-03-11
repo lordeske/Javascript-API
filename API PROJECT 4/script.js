@@ -1,4 +1,4 @@
-let currentCity = "Belgrade";
+let currentCity = "Novi Sad";
 const units = "metric"
 
 
@@ -63,11 +63,11 @@ const getWeather = () => {
         console.log(data);
         city.innerHTML = `${data.name},${convert(data.sys.country)}`;
         datetime.innerHTML = convertTime(data.dt, data.timezone);
-
-
-
-
-
+        weather__forecast.innerHTML = `<p>${data.weather[0].main}</p>`
+        weather__temperature.innerHTML =  `${Math.round(data.main.temp)}&#176C`;
+        weather__icon.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png"/>`  // getting image from inpuut
+        weather__minmax.innerHTML = `<p>Min: ${Math.round(data.main.temp_min)}&#176C</p> <p>Max: ${Math.round(data.main.temp_max)}&#176C </p>`
+       
 
     }
     );
