@@ -16,8 +16,39 @@ const weather__pressure = document.querySelector('.weather__pressure');
 
 
 
+const convert = (country) => {  /// converting country code
+
+    const regionNames = new Intl.DisplayNames(["en"],{type : "region"});
+    return regionNames.of(country);
+    
+}
 
 
+const convertTime = (time, zone) =>
+{
+    const convertTimeZone = zone /  3600  //sec in hr
+    const date = new Date(time * 1000);
+
+    const options = {
+
+        weekday : "long",
+        day : "numeric",
+        month : "long",
+        year : "numeric",
+        hour : "numeric",
+        minute : "numeric",
+        timeZone: `Etc/GMT${convertTimeZone >= 0 ? "-" : "+"}${Math.abs(convertTimeZone)}`,
+        hour12: true,
+       
+
+
+
+    }
+
+    return date.toLocaleString("en-US", options);
+
+
+}
 
 
 
@@ -30,7 +61,8 @@ const getWeather = () => {
 
 
         console.log(data);
-        city.innerHTML = `${data.name},${data.sys.country}`;
+        city.innerHTML = `${data.name},${convert(data.sys.country)}`;
+        datetime.innerHTML = convertTime(data.dt, data.timezone);
 
 
 
